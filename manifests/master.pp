@@ -24,6 +24,7 @@ class dovecot::master (
         "set service[ . = \"auth\"]/unix_listener[ . = \"${postfix_path}\"]/user \"${postfix_username}\"",
         "set service[ . = \"auth\"]/unix_listener[ . = \"${postfix_path}\"]/group \"${postfix_groupname}\"",
         ],
+      require     => Package[$::dovecot::mailpackages]
     }
 
     dovecot::config::dovecotcfmulti { '/etc/dovecot/conf.d/10-master.conf-postfixlistener1':
